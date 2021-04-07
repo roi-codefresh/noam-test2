@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: null
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  labels:
+    app.kubernetes.io/managed-by: argo-autopilot
+    app.kubernetes.io/name: root
+  name: root
+  namespace: oren
+spec:
+  destination:
+    namespace: oren
+    server: https://kubernetes.default.svc
+  project: ""
+  source:
+    path: oren2/envs
+    repoURL: https://github.com/roi-codefresh/noam-test2
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+status:
+  health: {}
+  summary: {}
+  sync:
+    comparedTo:
+      destination: {}
+      source:
+        repoURL: ""
+    status: ""
