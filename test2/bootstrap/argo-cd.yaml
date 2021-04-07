@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/managed-by: argo-autopilot
+    app.kubernetes.io/name: argo-cd
+  name: argo-cd
+  namespace: noam
+spec:
+  destination:
+    namespace: noam
+    server: https://kubernetes.default.svc
+  project: ""
+  source:
+    path: test2/bootstrap/argo-cd
+    repoURL: https://github.com/roi-codefresh/noam-test2
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+status:
+  health: {}
+  summary: {}
+  sync:
+    comparedTo:
+      destination: {}
+      source:
+        repoURL: ""
+    status: ""
